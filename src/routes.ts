@@ -10,6 +10,7 @@ import { Router } from "express";
 import { ProcessoController } from "./controller/ProcessoController";
 import { UsuarioController } from "./controller/UsuarioController";
 import { AdvogadoController } from "./controller/AdvogadoController";
+import { JurisprudenciaController } from "./controller/JurisprudenciaController";
 import { AutenticarAdvogadoController } from "./controller/AutenticarAdvogadoController";
 
 /* DECLARAÇÕES */
@@ -17,6 +18,7 @@ const router = Router();
 const usuarioController = new UsuarioController();
 const processoController = new ProcessoController();
 const advogadoController = new AdvogadoController();
+const jurisprudenciaController = new JurisprudenciaController();
 const autenticarAdvogadoController = new AutenticarAdvogadoController();
 
 /* VERBOS DO HTTP */
@@ -39,6 +41,10 @@ router.put('/api/v1/advogado', advogadoController.put);
 
 /*  ROTAS AUTENTICAR ADVOGADO */
 router.post('/api/v1/autenticar', autenticarAdvogadoController.autenticar);
+
+/*  ROTAS AUTENTICAR ADVOGADO */
+router.post('/api/v1/jurisprudencia', jurisprudenciaController.post);
+router.get('/api/v1/jurisprudencia', jurisprudenciaController.get);
 
 /* EXPORTAÇÃO */
 export { router }
