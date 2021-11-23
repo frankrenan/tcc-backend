@@ -1,6 +1,7 @@
 import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn } from "typeorm";
 import { v4 as uuid } from "uuid";
 
+
 @Entity("jurisprudencia")
 class Jurisprudencia{
 
@@ -12,46 +13,46 @@ class Jurisprudencia{
   readonly id: string;
 
   @Column()
-  tipo: string;
+  tipo: String;
 
   @Column()
-  descricao: string;
+  descricao: String;
 
   @Column()
-  tamanho: string;
+  tamanho: String;
 
   @Column()
-  ata: string;
+  ata: String;
 
   @Column()
-  objeto: string;
+  objeto: String;
 
   @Column()
-  relator: string;
+  relator: String;
 
   @Column()
-  pronunciaMp: string;
+  pronunciaMp: String;
 
   @Column()
-  assunto: string;
+  assunto: String;
 
   @Column()
-  caminhoArquivo: string;
+  caminhoArquivo: String;
 
   @Column()
   dataSessao: Date;
 
   @Column()
-  ementa: string;
+  ementa: String;
 
   @Column()
-  quorum: string;
+  quorum: String;
 
   @Column()
-  auditor: string;
+  auditor: String;
 
   @Column()
-  representanteMp: string;
+  representanteMp: String;
 
   @CreateDateColumn()
   created_at: Date;
