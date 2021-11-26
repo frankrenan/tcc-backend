@@ -1,6 +1,6 @@
 import { getCustomRepository } from "typeorm"
+import getCliente from "../api/Elasticsearch";
 import { JurisprudenciaRepository } from "../repository/JurisprudenciaRepository"
-
 
 
 interface IJurisprudenciaRequest {
@@ -30,6 +30,14 @@ class JurisprudenciaService {
 
     await jurisprudenciaRepository.save(jurisprudencia);
 
+    getCliente()
+      .index({
+        index: "jurisprudencia",
+        type: "type_jurisprudencia",
+        body: jurisprudencia
+      }).then(() => console.log("Cadastrado no elastic com sucesso"))
+      .catch(() => console.log("Não foi possível cadastrar no elastic com sucesso"))
+
     return jurisprudencia;
   }
 
@@ -37,6 +45,22 @@ class JurisprudenciaService {
     const jurisprudenciaRepository = getCustomRepository(JurisprudenciaRepository);
 
     return await jurisprudenciaRepository.find();
+  }
+
+  /* ELASTICSEARCH */
+  async listQuery(stringBusca: string) {
+
+    const result = await getCliente().search({
+      index: "jurisprudencia",
+      body: {
+        query: {
+          match: {
+            "descricao.keywords": stringBusca
+          }
+        }
+      }
+    });
+    return result;
   }
 
 }

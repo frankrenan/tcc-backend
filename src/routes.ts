@@ -45,6 +45,7 @@ router.post('/api/v1/autenticar', autenticarAdvogadoController.autenticar);
 /*  ROTAS AUTENTICAR ADVOGADO */
 router.post('/api/v1/jurisprudencia', jurisprudenciaController.post);
 router.get('/api/v1/jurisprudencia', jurisprudenciaController.get);
+router.get('/api/v1/jurisprudencia/', jurisprudenciaController.getQuery);
 
 /* EXPORTAÇÃO */
 export { router }
