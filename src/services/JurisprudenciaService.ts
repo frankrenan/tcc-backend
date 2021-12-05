@@ -50,17 +50,34 @@ class JurisprudenciaService {
   /* ELASTICSEARCH */
   async listQuery(stringBusca: string) {
 
-    const result = await getCliente().search({
+    // getCliente().search({
+    //   index: "jurisprudencia",
+    //   type: "type_jurisprudencia", body: {
+    //     query: {
+    //       match: {
+    //         descricao: stringBusca
+    //       }
+    //     },
+    //   }
+    // }).then((data) => {
+    //   for (const teste of data.hits.hits) {
+    //     console.log(teste._source);
+    //   }
+    // })
+
+    const response = await getCliente().search({
       index: "jurisprudencia",
+      type: "type_jurisprudencia",
+      _source: true,
       body: {
         query: {
           match: {
-            "descricao.keywords": stringBusca
+            descricao: stringBusca
           }
-        }
+        },
       }
     });
-    return result;
+    return response.hits.hits;
   }
 
 }

@@ -22,13 +22,17 @@ class JurisprudenciaController {
 
   async getQuery(request: Request, response: Response) {
 
-    const stringBusca =  request.params.stringBusca;
+    const stringBusca =  request.query["stringBusca"];
+
+    const stringSearch = String(stringBusca)
 
     const jurisprudenciaService = new JurisprudenciaService();
 
-    const resultado = await jurisprudenciaService.listQuery(stringBusca);
+    const data = await jurisprudenciaService.listQuery(stringSearch);
 
-    return response.json(resultado);
+    console.log(stringSearch)
+
+    return response.json(data);
   }
 
 }
