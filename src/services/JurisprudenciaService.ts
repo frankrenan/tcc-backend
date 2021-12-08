@@ -72,7 +72,7 @@ class JurisprudenciaService {
       body: {
         query: {
           match: {
-            descricao: stringBusca
+            objeto: stringBusca
           }
         },
       }
